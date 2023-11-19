@@ -13,6 +13,13 @@ class SplashViewBady extends StatelessWidget {
         Image.asset(
           AssetsData.logo,
         ),
+        const SizedBox(
+          height: 15,
+        ),
+        const Text(
+          'Read Books For Free',
+          textAlign: TextAlign.center,
+        ),
       ],
     );
   }
