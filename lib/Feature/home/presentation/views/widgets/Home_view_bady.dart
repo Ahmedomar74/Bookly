@@ -1,4 +1,4 @@
-import 'package:booklyapp/Feature/home/presentation/views/widgets/Custom_app_bar.dart';
+import 'package:booklyapp/Feature/home/presentation/views/widgets/custom_app_bar.dart';
 import 'package:booklyapp/Feature/home/presentation/views/widgets/best_seller_list_view.dart';
 import 'package:booklyapp/Feature/home/presentation/views/widgets/feature_list_view.dart';
 import 'package:booklyapp/core/uitls/styles.dart';
@@ -27,7 +27,10 @@ class HomeViewBody extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Text('Best Seller', style: Styles.textStyle18),
+                  child: Text(
+                    'Best Seller',
+                    style: Styles.textStyle18,
+                  ),
                 ),
                 SizedBox(
                   height: 10,
