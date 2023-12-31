@@ -1,22 +1,39 @@
+import 'package:booklyapp/Feature/home/presentation/manger/newset_book_cubit/newset_book_cubit.dart';
 import 'package:booklyapp/Feature/home/presentation/views/widgets/best_seller_list_item.dart';
+import 'package:booklyapp/core/widgets/custom_error_widget.dart';
+import 'package:booklyapp/core/widgets/custom_loading_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BestSellerListView extends StatelessWidget {
   const BestSellerListView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      padding: EdgeInsets.zero,
-      itemCount: 10,
-      itemBuilder: (context, index) {
-        return const Padding(
-          padding: EdgeInsets.symmetric(vertical: 10),
-          child: BookListViewItem(),
+    return BlocBuilder<NewsetBookCubit, NewsetBookState>(
+        builder: (context, state) {
+      if (state is NewsetBookSuccess) {
+        return ListView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          padding: EdgeInsets.zero,
+          itemCount: state.books.length,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: BookListViewItem(
+                bookModel: state.books[index],
+              ),
+            );
+          },
         );
-      },
-    );
+      } else if (state is NewsetBookFailure) {
+        return CustomErrorWidget(
+          errMessage: state.errMessage,
+        );
+      } else {
+        return const CustomLoadingIndicator();
+      }
+    });
   }
 }
