@@ -18,11 +18,12 @@ class SimilarBooksListViewState extends StatelessWidget {
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  return const Padding(
-                    padding: EdgeInsets.only(right: 16),
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 16),
                     child: CustomBookImage(
                       imageUrl:
-                          'https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w600/2023/10/free-images.jpg',
+                          state.books[index].volumeInfo.imageLinks?.thumbnail ??
+                              '',
                     ),
                   );
                 }),
